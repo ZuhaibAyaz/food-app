@@ -1,10 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { clearCart, removeItem } from '../utils/cartSlice';
 import { CDN_URL } from '../utils/constants';
+import { toast } from 'react-hot-toast';
+
 
 const Cart = () => {
   const dispatch = useDispatch();
   const cartItems = useSelector((state) => state.cart.items);
+
 
   // Group the cart items by ID and count the occurrences
   const groupedCartItems = cartItems.reduce((acc, item) => {
@@ -37,7 +40,7 @@ const Cart = () => {
       <div className="xl:w-6/12 m-auto">
         <button
           className="p-2 m-2 bg-black text-white rounded-xl"
-          onClick={handleClearCart}
+          onClick={() => {handleClearCart(); toast.success("Cart cleared!")}}
         >
           Clear Cart
         </button>
@@ -62,7 +65,7 @@ const Cart = () => {
               <div className=''>
               <button
                 className="p-2 bg-red-500 text-white rounded"
-                onClick={() => dispatch(removeItem(item))}
+                onClick={() => {dispatch(removeItem(item)); toast.error("Item Removed!")}}
               >
                 Remove
               </button>

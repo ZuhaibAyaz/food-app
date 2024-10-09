@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux';
 import { CDN_URL } from '../utils/constants';
 import { addItem, removeItem } from '../utils/cartSlice';
 import { FaPlus, FaMinus } from "react-icons/fa";
+import { toast } from 'react-hot-toast';
 
 function ItemCards({ items }) {
   const dispatch = useDispatch();
@@ -66,7 +67,7 @@ function ItemCards({ items }) {
                 <div className="flex items-center border border-gray-300 rounded-lg bg-white">
                   <button
                     className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-l-lg"
-                    onClick={() => handleDecrement(item)}
+                    onClick={() => {handleDecrement(item); toast.error("Item Removed!");}}
                   >
                     <FaMinus color="green" size={12} />
                   </button>
@@ -75,7 +76,7 @@ function ItemCards({ items }) {
                   </span>
                   <button
                     className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-r-lg"
-                    onClick={() => handleAddItem(item)}
+                    onClick={() => {handleAddItem(item); toast.success("Added to Cart!"); }}
                   >
                     <FaPlus color="green" size={12} />
                   </button>
@@ -83,7 +84,7 @@ function ItemCards({ items }) {
               ) : (
                 <button
                   className="shadow-lg text-green-700 flex  w-[100px] h-[30px] md:w-[120px] md:h-[38px] text-center justify-center font-extrabold text-base items-center rounded-lg border bg-white"
-                  onClick={() => handleAddItem(item)}
+                  onClick={() => {handleAddItem(item);  toast.success("Added to Cart!");}}
                 >
                   ADD
                 </button>

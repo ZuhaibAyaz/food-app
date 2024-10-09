@@ -8,6 +8,7 @@ import RestaurantMenu from './Components/RestaurantMenu.jsx';
 import appStore from './utils/appStore.js';
 import { Provider } from 'react-redux';
 import Search from './Components/Search.jsx';
+import { Toaster } from 'react-hot-toast';
 
 
 
@@ -50,6 +51,7 @@ const appRouter = createBrowserRouter([
 ReactDOM.createRoot(document.getElementById('root')).render(
  <Provider store={appStore}>
     <RouterProvider router={appRouter} />
+    <Toaster />
     </Provider>
  
 );
