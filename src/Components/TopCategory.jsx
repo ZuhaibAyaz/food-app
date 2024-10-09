@@ -21,7 +21,7 @@ function TopCategory() {
   const fetchData = async (lat, lng) => {
     try {
       const data = await fetch(
-        `https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
+        `${import.meta.env.VITE_BASE_URL}/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING`
       );
       const json = await data.json();      
       const categories = json?.data?.cards?.[0]?.card?.card?.gridElements?.infoWithStyle?.info || [];

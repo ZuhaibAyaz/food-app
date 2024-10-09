@@ -18,7 +18,7 @@ function Search() {
   }
 
   async function fetchDishes(lat, lng) {
-    let data = await fetch(`https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${searchText}&trackingId=undefined&submitAction=ENTER&queryUniqueId=15bfd2fb-973d-f6d2-63a5-a8bb76376913`);
+    let data = await fetch(`https://cors-by-codethread-for-swiggy.vercel.app/cors/dapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${searchText}&trackingId=undefined&submitAction=ENTER&queryUniqueId=15bfd2fb-973d-f6d2-63a5-a8bb76376913`);
 
     let res = await data.json();
 
@@ -28,7 +28,7 @@ function Search() {
   }
 
   async function fetchRestaurantData(lat, lng) {
-    let data = await fetch(`https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${searchText}&trackingId=undefined&submitAction=ENTER&queryUniqueId=15bfd2fb-973d-f6d2-63a5-a8bb76376913&selectedPLTab=RESTAURANT`);
+    let data = await fetch(`${import.meta.env.VITE_BASE_URL}/restaurants/search/v3?lat=${lat}&lng=${lng}&str=${searchText}&trackingId=undefined&submitAction=ENTER&queryUniqueId=15bfd2fb-973d-f6d2-63a5-a8bb76376913&selectedPLTab=RESTAURANT`);
 
     let res = await data.json();
     

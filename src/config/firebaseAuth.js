@@ -3,13 +3,13 @@ import { initializeApp } from "firebase/app";
 import {GoogleAuthProvider, getAuth} from "firebase/auth";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyDtTaxaV3SQlLU5Rk61CKr-nYtI6_E1S98",
-  authDomain: "swiggy-clone-186d9.firebaseapp.com",
-  projectId: "swiggy-clone-186d9",
-  storageBucket: "swiggy-clone-186d9.appspot.com",
-  messagingSenderId: "663099196781",
-  appId: "1:663099196781:web:09aafe340fcb87367c4664",
-  measurementId: "G-X69MWE03EW"
+  apiKey: import.meta.env.VITE_API_KEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_APP_ID,
+  measurementId: import.meta.env.VITE_MEASUREMENT_ID,
 };
 
 

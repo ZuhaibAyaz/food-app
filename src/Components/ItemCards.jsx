@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { CDN_URL } from '../utils/constants';
 import { addItem, removeItem } from '../utils/cartSlice';
@@ -7,15 +7,38 @@ import { FaPlus, FaMinus } from "react-icons/fa";
 function ItemCards({ items }) {
   const dispatch = useDispatch();
 
-  const storedItemCounts = JSON.parse(localStorage.getItem('cartItemCounts')) || {};
-  
+  // Initialize state for item counts
+  const [itemCounts, setItemCounts] = useState({});
+
+  // Load item counts from localStorage when the component mounts
+  useEffect(() => {
+    const storedItemCounts = JSON.parse(localStorage.getItem('cartItemCounts')) || {};
+    setItemCounts(storedItemCounts);
+  }, []);
+
+  // Function to update localStorage and state when items are added or removed
+  const updateItemCounts = (itemId, count) => {
+    const updatedCounts = {
+      ...itemCounts,
+      [itemId]: count,
+    };
+    setItemCounts(updatedCounts);
+    localStorage.setItem('cartItemCounts', JSON.stringify(updatedCounts));
+  };
+
   const handleAddItem = (item) => {
-    dispatch(addItem(item));
+    const currentCount = itemCounts[item.card.info.id] || 0;
+    const newCount = currentCount + 1;
+    updateItemCounts(item.card.info.id, newCount);
+    dispatch(addItem(item)); // Add item to cart using Redux
   };
 
   const handleDecrement = (item) => {
-    if (storedItemCounts[item.card.info.id] > 0) {
-      dispatch(removeItem(item));
+    const currentCount = itemCounts[item.card.info.id] || 0;
+    if (currentCount > 0) {
+      const newCount = currentCount - 1;
+      updateItemCounts(item.card.info.id, newCount);
+      dispatch(removeItem(item)); // Remove item from cart using Redux
     }
   };
 
@@ -31,15 +54,15 @@ function ItemCards({ items }) {
               </span>
             </div>
             <div className='w-[160px] xl:w-[555px]'>
-            <p className="font-light text-[16px] leading-[19px] tracking-[-0.3px] truncate">
-              {item.card.info.description}
-            </p>
+              <p className="font-light text-[16px] leading-[19px] tracking-[-0.3px] truncate">
+                {item.card.info.description}
+              </p>
             </div>
           </div>
 
           <div className="relative flex-shrink-0">
             <div className="absolute bottom-[-25px] left-1/2 transform -translate-x-1/2 mb-2">
-              {storedItemCounts[item.card.info.id] ? (
+              {itemCounts[item.card.info.id] ? (
                 <div className="flex items-center border border-gray-300 rounded-lg bg-white">
                   <button
                     className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-l-lg"
@@ -48,7 +71,7 @@ function ItemCards({ items }) {
                     <FaMinus color="green" size={12} />
                   </button>
                   <span className="w-12 h-8 flex items-center justify-center font-extrabold text-green-700">
-                    {storedItemCounts[item.card.info.id]}
+                    {itemCounts[item.card.info.id]}
                   </span>
                   <button
                     className="w-8 h-8 flex items-center justify-center text-gray-600 hover:bg-gray-200 rounded-r-lg"
@@ -68,7 +91,7 @@ function ItemCards({ items }) {
             </div>
             <img
               src={CDN_URL + item.card.info.imageId}
-              className="  w-[115px] h-[105px]  lg:w-[156px] lg:h-[144px] object-cover rounded-lg"
+              className="w-[115px] h-[105px] lg:w-[156px] lg:h-[144px] object-cover rounded-lg"
               alt={item.card.info.name}
             />
           </div>

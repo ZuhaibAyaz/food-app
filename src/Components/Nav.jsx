@@ -41,14 +41,14 @@ function Nav() {
   
   async function searchCity(val) {
     if (val === "") return;
-    const res = await fetch(`https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/misc/place-autocomplete?input=${val}&types=`);
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/misc/place-autocomplete?input=${val}&types=`);
     const data = await res.json();
     setSearchResult(data.data);
   }
 
   async function fetchLatAndLng(id) {
     if (id === "") return;
-    const res = await fetch(`https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/misc/address-recommend?place_id=${id}`);
+    const res = await fetch(`${import.meta.env.VITE_BASE_URL}/misc/address-recommend?place_id=${id}`);
     const data = await res.json();
     const lat = data.data[0].geometry.location.lat;
     const lng = data.data[0].geometry.location.lng;
