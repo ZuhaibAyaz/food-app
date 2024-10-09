@@ -66,10 +66,10 @@ function Nav() {
   };
 
   return (
-    <div className='relative w-full  '>
-      <div className='sticky top-0 bg-white z-50 flex justify-between shadow-md h-[80px] items-center px-4  py-2 w-full'>
+    <div className='relative w-full   '>
+      <div className=' sticky top-0 bg-white z-50 flex justify-between shadow-md h-[80px] items-center px-5 md:px-14 py-2 w-full'>
         <div className='flex items-center gap-4 md:gap-10'>
-          <Link to="/"><img src='./images/swiggylogo.png' alt='logo' className='w-[35px] h-[50px]' /></Link>
+          <Link to="/"><img src='./images/swig-logo.png' alt='logo' className='w-[55px] h-[55px]' /></Link>
           
           {/* Always visible "Other" section */}
           <h2 
