@@ -20,7 +20,7 @@ function Footer() {
   const deliveryCities = ["Bangalore", "Gurgaon", "Hyderabad", "Delhi", "Mumbai", "Pune"];
 
   return (
-    <div className='bg-[#02060C] text-white px-4 md:px-[237px] mt-[140px]'>
+    <div className='bg-[#02060C] text-white px-4 md:px-[237px] mt-[140px] pb-10'>
       {/* Swiggy logo section */}
       <div className='pt-10 w-full text-center md:w-[150px] mx-auto'>
         <div className='flex justify-center items-center gap-2'>
