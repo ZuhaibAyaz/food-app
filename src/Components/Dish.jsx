@@ -3,6 +3,8 @@ import { FaArrowRight } from "react-icons/fa6";
 import { CDN_URL } from '../utils/constants';
 import { useDispatch } from 'react-redux';
 import { addItem } from '../utils/cartSlice';
+import { toast } from 'react-hot-toast';
+
 
 function Dish(props) {
   const dispatch = useDispatch();
@@ -69,7 +71,7 @@ function Dish(props) {
             <div className="absolute bottom-[-25px] left-1/2 transform -translate-x-1/2 mb-2">
               <button
                 className="shadow-lg text-green-700 w-[120px] h-[38px] font-extrabold text-base rounded-lg border bg-white"
-                onClick={() => handleAddItem(dishData?.card?.card?.info)} // Passing dish info here
+                onClick={() =>{ handleAddItem(dishData?.card?.card?.info); toast.success("Added to Cart!")}} // Passing dish info here
               >
                 ADD
               </button>
