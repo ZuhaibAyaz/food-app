@@ -42,15 +42,18 @@ function Body() {
       let categories = json?.data?.cards.find(
         (data) => data?.card?.card?.id == "whats_on_your_mind"
       )?.card?.card?.gridElements?.infoWithStyle?.info || [];
+
+      let title = json?.data?.cards.find(
+        (data)=> data?.card?.card.id =="popular_restaurants_title"
+      )?.card?.card?.title || [];
       
       setOnYourMind( categories ); // Ensure we are setting an array
-
       setListOfRestaurants(secondaryData.length > 0 ? secondaryData : mainData);
       setNewList(secondaryData.length > 0 ? secondaryData : mainData);
 
       console.log(json);
 
-      setHeadTitle(json?.data?.cards[2]?.card?.card?.title);
+      setHeadTitle(title);
     } catch (error) {
       console.error('Error fetching data:', error);
     } finally {
