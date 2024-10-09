@@ -110,7 +110,7 @@ function Body() {
 
       {/* Restaurants Grid Section */}
       <div className='py-8 '>
-        <h1 className='text-[22.5px] font-bold leading-[28px] tracking-[-0.4px] pl-4 '>
+        <h1 className='text-[22.5px] font-bold leading-[28px] tracking-[-0.4px] pl-4  '>
           {headTitle}
         </h1>
 
